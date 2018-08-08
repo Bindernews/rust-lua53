@@ -292,9 +292,15 @@ pub use self::lualib::{
   LUA_UTF8LIBNAME, LUA_BITLIBNAME, LUA_MATHLIBNAME, LUA_DBLIBNAME, LUA_LOADLIBNAME
 };
 
-#[allow(unused_imports, dead_code, non_camel_case_types)]
+#[allow(unused_imports, dead_code, non_camel_case_types, non_upper_case_globals)]
 mod glue {
-  include!(concat!(env!("OUT_DIR"), "/glue.rs"));
+    use std::mem::size_of;
+    use libc;
+
+    include!(concat!(env!("OUT_DIR"), "/glue.rs"));
+
+    pub const LUA_EXTRASPACE: isize = size_of::<*const libc::c_void>() as isize;
+    pub const LUAL_NUMSIZES: isize = (size_of::<lua_Integer>() * 16 + size_of::<lua_Number>()) as isize;
 }
 
 mod luaconf;
