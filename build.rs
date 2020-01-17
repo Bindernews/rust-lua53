@@ -13,7 +13,7 @@ trait CommandExt {
 impl CommandExt for Command {
     /// Execute the command and return an error if it exited with a failure status.
     fn execute(&mut self) -> io::Result<()> {
-        let status = try!(self.status());
+        let status = self.status()?;
         if status.success() {
             Ok(())
         } else {

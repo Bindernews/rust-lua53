@@ -9,3 +9,6 @@
 
 #undef LUAL_NUMSIZES
 #define LUAL_NUMSIZES   sizeof(lua_Integer) * 16 + sizeof(lua_Number)
+
+#undef LUAL_BUFFERSIZE
+const unsigned int LUAL_BUFFERSIZE = ((int)(0x80 * sizeof(void*) * sizeof(lua_Integer)));
