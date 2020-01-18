@@ -1,9 +1,7 @@
-extern crate bindgen;
 extern crate cc;
 
 use std::io;
 use std::env;
-use std::path::PathBuf;
 use std::process::Command;
 
 trait CommandExt {
@@ -25,18 +23,6 @@ impl CommandExt for Command {
 }
 
 fn main() {
-    // Generate 'glue' bindings
-    let bindings = bindgen::Builder::default()
-        .header("lua-source/glue.h")
-        .generate()
-        .expect("Unable to generate bindings");
-
-    let out_path = PathBuf::from(env::var("OUT_DIR").unwrap());
-    bindings
-        .write_to_file(out_path.join("glue.rs"))
-        .expect("Couldn't write bindings!");
-
-
     // build archive
 	let target_os = env::var("CARGO_CFG_TARGET_OS");
 	let target_family = env::var("CARGO_CFG_TARGET_FAMILY");
@@ -92,5 +78,5 @@ fn main() {
 		.file("lua-source/src/lutf8lib.c")
 		.file("lua-source/src/lvm.c")
 		.file("lua-source/src/lzio.c")
-		.compile("liblua5.3.a");
+		.compile("liblua5.3");
 }

@@ -1,5 +1,4 @@
 [package]
-
 name = "lua"
 version = "0.0.11"
 authors = ["J.C. Moyer"]
@@ -16,7 +15,6 @@ links = "lua"
 
 [build-dependencies]
 cc = "1.0"
-bindgen = "0.26"
 
 [dependencies]
 bitflags = "0.1"
