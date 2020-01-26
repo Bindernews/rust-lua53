@@ -305,10 +305,10 @@ mod glue {
     pub const LUA_EXTRASPACE: isize = size_of::<*const libc::c_void>() as isize;
     pub const LUAL_NUMSIZES: isize = (size_of::<lua_Integer>() * 16 + size_of::<lua_Number>()) as isize;
 
-    #[cfg(not(target_os = "macos"))]
+    //#[cfg(not(target_os = "macos"))]
     pub const LUA_MININTEGER: i64 = -9223372036854775808;
 
-    #[cfg(not(target_os = "macos"))]
+    //#[cfg(not(target_os = "macos"))]
     pub const LUA_MAXINTEGER: i64 = 9223372036854775807;
 }
 
